@@ -1,0 +1,32 @@
+.linha {
+    display: flex;
+    justify-content: center;
+}
+
+.light_off {
+    background-color: rgba(0,0,0,0.5);
+    margin: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: rgba(0,0,0,1);
+    }
+}
+
+.light_on {
+    background-color: rgba(0,255,0,0.5);
+    margin: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: rgba(0,255,0,1);
+    }
+}

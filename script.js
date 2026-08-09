@@ -16,7 +16,7 @@ function generate_grid(size) {
         for (let j=1; j<=size; j++) {
             html+=
                 `
-                    <div id="${lamp}" class="light_off" onclick="change_states(Number(this.id))"></div>
+                    <div id="${lamp}" class="light_off" onclick="change_states(Number(this.id), true)"></div>
                 `
             lamps.push({"line":i, "on":false})
             lamp++
@@ -47,13 +47,13 @@ function change_state(lamp) {
     }
 }
 
-function change_states(lamp) {
+function change_states(lamp, need_verify_lamps) {
     change_state(lamp)
     if(lamp-size>=0) {change_state(lamp-size)}
     if(lamp+size<=(size*size)-1) {change_state(lamp+size)}
     if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(lamp+1)}
     if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(lamp-1)}
-    if (all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
+    if (need_verify_lamps && all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
 }
 
 function shuffle(choice, novo_jogo) {
@@ -63,16 +63,17 @@ function shuffle(choice, novo_jogo) {
         generate_grid(size)
         lamps_changed=[]
         while (lamps_changed.length<size) {
-            lamp_to_change=Math.floor(Math.random() * (size*size))
+            let lamp_to_change=Math.floor(Math.random() * (size*size))
             if (!lamps_changed.includes(lamp_to_change)) {
                 lamps_changed.push(lamp_to_change)
-                change_states(lamp_to_change)
+                change_states(lamp_to_change, false)
             }
+            if (lamps_changed.length==size && all_lamps_are_off()) {lamps_changed=[]}
         }
     }
     else {
         generate_grid(size)
-        lamps_changed.forEach(lamp => {change_states(lamp)})
+        lamps_changed.forEach(lamp => {change_states(lamp, false)})
     }
 }
 

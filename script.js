@@ -49,10 +49,10 @@ function change_state(lamp) {
 
 function change_states(lamp) {
     change_state(lamp)
-    if(lamp-size>=0) {change_state(String(lamp-size))}
-    if(lamp+size<=(size*size)-1) {change_state(String(lamp+size))}
-    if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp+1))}
-    if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp-1))}
+    if(lamp-size>=0) {change_state(lamp-size)}
+    if(lamp+size<=(size*size)-1) {change_state(lamp+size)}
+    if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(lamp+1)}
+    if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(lamp-1)}
     if (all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
 }
 

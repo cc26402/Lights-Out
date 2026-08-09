@@ -1,6 +1,7 @@
 let lamps=[]
 let dif={"easy":3, "med":5, "hard":7}
 let size=null
+let current_difficulty=null
 
 function generate_grid(size) {
     lamps=[]
@@ -60,6 +61,7 @@ function change_states(lamp) {
 
 function shuffle(choice) {
     size=dif[choice]
+    current_difficulty=choice
     generate_grid(size)
     let lamps_changed=[]
     while (lamps_changed.length<size) {

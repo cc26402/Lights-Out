@@ -2,6 +2,7 @@ let lamps=[]
 let dif={"easy":3, "med":5, "hard":7}
 let size=null
 let current_difficulty=null
+let lamps_changed=[]
 
 function generate_grid(size) {
     lamps=[]
@@ -34,10 +35,6 @@ function all_lamps_are_off() {
     else {return true}
 }
 
-function congratulations() {
-    console.log("ebaa")
-}
-
 function change_state(lamp) {
     let lamp_str=String(lamp)
     if (!lamps[lamp]["on"]) {
@@ -56,19 +53,30 @@ function change_states(lamp) {
     if(lamp+size<=(size*size)-1) {change_state(String(lamp+size))}
     if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp+1))}
     if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp-1))}
-    if (all_lamps_are_off()) {congratulations()}
+    if (all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
 }
 
-function shuffle(choice) {
-    size=dif[choice]
-    current_difficulty=choice
-    generate_grid(size)
-    let lamps_changed=[]
-    while (lamps_changed.length<size) {
-        lamp_to_change=Math.floor(Math.random() * (size*size))
-        if (!lamps_changed.includes(lamp_to_change)) {
-            lamps_changed.push(lamp_to_change)
-            change_states(lamp_to_change)
+function shuffle(choice, novo_jogo) {
+    if (novo_jogo) {
+        size=dif[choice]
+        current_difficulty=choice
+        generate_grid(size)
+        lamps_changed=[]
+        while (lamps_changed.length<size) {
+            lamp_to_change=Math.floor(Math.random() * (size*size))
+            if (!lamps_changed.includes(lamp_to_change)) {
+                lamps_changed.push(lamp_to_change)
+                change_states(lamp_to_change)
+            }
         }
     }
+    else {
+        generate_grid(size)
+        lamps_changed.forEach(lamp => {change_states(lamp)})
+    }
+}
+
+function play_again(id_congrats) {
+    document.getElementById(id_congrats).style.display="none"
+    shuffle(current_difficulty, true)
 }

@@ -6,25 +6,28 @@
     <link rel="stylesheet" href="style.css">
     <title>Lights Out</title>
 </head>
-<body onload="shuffle('easy')">
+<body onload="shuffle('easy', true)">
     <header>
         <h1>Lights Out</h1>
     </header>
     <section id="difficulties">
-        <button id="easy" onclick="shuffle(this.id)">Fácil</button>
-        <button id="med" onclick="shuffle(this.id)">Médio</button>
-        <button id="hard" onclick="shuffle(this.id)">Difícil</button>
+        <button value="easy" onclick="shuffle(this.value, true)">Fácil</button>
+        <button value="med" onclick="shuffle(this.value, true)">Médio</button>
+        <button value="hard" onclick="shuffle(this.value, true)">Difícil</button>
     </section>
     <main>
         <section id="grid"></section>
+        <button onclick="shuffle(null, false)">Resetar jogo atual</button>
+    </main>
+    <div id="congratulations_back">
         <div id="congratulations">
             <div>
-                <h1>Você ganhou</h1>
-                <h2>Parabéns!</h2>
+                <h1>Parabéns!</h1>
+                <h2>Você ganhou</h2>
             </div>
-            <button>Jogar Novamente</button>
+            <button onclick="play_again(this.parentElement.parentElement.id)">Jogar Novamente</button>
         </div>
-    </main>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>

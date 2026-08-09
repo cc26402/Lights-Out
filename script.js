@@ -1,10 +1,11 @@
-let lamps={}
-let dif={"easy":"3", "med":"5", "hard":"7"}
+let lamps=[]
+let dif={"easy":3, "med":5, "hard":7}
+let size=null
 
-function gerar_grid(choice) {
-    lamps={}
-    size=dif[choice]
+function generate_grid(size) {
+    lamps=[]
     let html=""
+    let lamp=0
     for (let i=1; i<=size; i++) {
         html+=
             `
@@ -13,43 +14,48 @@ function gerar_grid(choice) {
         for (let j=1; j<=size; j++) {
             html+=
                 `
-                    <div id="col${j}_li${i}" class="light_off" onclick="mudar_estados(this.id)"></div>
+                    <div id="${lamp}" class="light_off" onclick="mudar_estados(Number(this.id))"></div>
                 `
-            let id=`col${j}_li${i}`
-            lamps[id]="off"
+            lamps.push({"line":i, "on":false})
+            lamp+=1
         }
         html+="</div>"
     }
     document.getElementById("grid").innerHTML=html
 }
 
-function mudar_estado(id) {
-    if (lamps[id]=="off") {
-        document.getElementById(id).className="light_on"
-        lamps[id]="on"
+function change_state(lamp) {
+    let lamp_str=String(lamp)
+    if (!lamps[lamp]["on"]) {
+        document.getElementById(lamp_str).className="light_on"
+        lamps[lamp]["on"]=true
     }
     else {
-        document.getElementById(id).className="light_off"
-        lamps[id]="off"
+        document.getElementById(lamp_str).className="light_off"
+        lamps[lamp]["on"]=false
     }
 }
 
-function mudar_estados(id) {
-    let col= Number(id[3])
-    let li=Number(id[7])
-    let lamps_to_change=[]
-    lamps_to_change.push(id)
-    lamps_to_change.push(`col${col-1}_li${li}`)
-    lamps_to_change.push(`col${col+1}_li${li}`)
-    lamps_to_change.push(`col${col}_li${li-1}`)
-    lamps_to_change.push(`col${col}_li${li+1}`)
-    lamps_to_change.forEach(lamp => {
-        if (lamp in lamps) {
-            mudar_estado(lamp)
-        }
-    })
+function change_states(lamp) {
+    change_state(lamp)
+    if(lamp-size>=0) {change_state(String(lamp-size))}
+    if(lamp+size<=(size*size)-1) {change_state(String(lamp+size))}
+    if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp+1))}
+    if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp-1))}
+    if (all_lamps_are_off()) {
+
+    }
 }
 
-function embaralhar() {
-    let teste=0
+function shuffle(choice) {
+    size=dif[choice]
+    generate_grid(size)
+    let lamps_changed=[]
+    while (lamps_changed.length<size) {
+        lamp_to_change=Math.floor(Math.random() * (size*size))
+        if (!lamps_changed.includes(lamp_to_change)) {
+            lamps_changed.push(lamp_to_change)
+            change_states(lamp_to_change)
+        }
+    }
 }

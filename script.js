@@ -14,14 +14,27 @@ function generate_grid(size) {
         for (let j=1; j<=size; j++) {
             html+=
                 `
-                    <div id="${lamp}" class="light_off" onclick="mudar_estados(Number(this.id))"></div>
+                    <div id="${lamp}" class="light_off" onclick="change_states(Number(this.id))"></div>
                 `
             lamps.push({"line":i, "on":false})
-            lamp+=1
+            lamp++
         }
         html+="</div>"
     }
     document.getElementById("grid").innerHTML=html
+}
+
+function all_lamps_are_off() {
+    let lamps_on=0
+    lamps.forEach(lamp => {
+        if (lamp["on"]) {lamps_on++}
+    })
+    if (lamps_on>0) {return false}
+    else {return true}
+}
+
+function congratulations() {
+    console.log("ebaa")
 }
 
 function change_state(lamp) {
@@ -42,9 +55,7 @@ function change_states(lamp) {
     if(lamp+size<=(size*size)-1) {change_state(String(lamp+size))}
     if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp+1))}
     if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(String(lamp-1))}
-    if (all_lamps_are_off()) {
-
-    }
+    if (all_lamps_are_off()) {congratulations()}
 }
 
 function shuffle(choice) {

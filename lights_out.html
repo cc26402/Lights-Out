@@ -7,14 +7,20 @@
     <title>Lights Out</title>
 </head>
 <body onload="shuffle('easy')">
-    <h1>Lights Out</h1>
-    <main>
+    <header>
+        <h1>Lights Out</h1>
+    </header>
+    <section id="difficulties">
         <button id="easy" onclick="shuffle(this.id)">Fácil</button>
         <button id="med" onclick="shuffle(this.id)">Médio</button>
         <button id="hard" onclick="shuffle(this.id)">Difícil</button>
-        <section id="grid">
-            
-        </section>
+    </section>
+    <main>
+        <section id="grid"></section>
+        <div id="congratulations">
+            <h1>Você ganhou</h1>
+            <h2>Parabéns!</h2>
+        </div>
     </main>
 </body>
 <script src="script.js"></script>

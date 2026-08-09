@@ -1,3 +1,32 @@
+
+body {
+    height: 97vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+header {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+#difficulties {
+    display: flex;
+    align-items: center;
+    height: 10%;
+    padding: 20px;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .linha {
     display: flex;
     justify-content: center;
@@ -29,4 +58,19 @@
     &:hover {
         background-color: rgba(0,255,0,1);
     }
+}
+
+#congratulations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    border: 1px solid;
+    border-radius: 20px;
 }

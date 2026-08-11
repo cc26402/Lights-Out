@@ -56,8 +56,8 @@ function change_states(lamp, need_verify_lamps) {
     if (need_verify_lamps && all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
 }
 
-function shuffle(choice, novo_jogo) {
-    if (novo_jogo) {
+function shuffle(choice, new_game) {
+    if (new_game) {
         size=dif[choice]
         current_difficulty=choice
         generate_grid(size)

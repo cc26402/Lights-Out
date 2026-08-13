@@ -62,7 +62,7 @@ function shuffle(choice, new_game) {
         current_difficulty=choice
         generate_grid(size)
         lamps_changed=[]
-        while (lamps_changed.length<size*3) {
+        while (lamps_changed.length<size*2) {
             let lamp_to_change=Math.floor(Math.random() * (size*size))
             if (!lamps_changed.includes(lamp_to_change)) {
                 lamps_changed.push(lamp_to_change)

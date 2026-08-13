@@ -70,7 +70,13 @@ header {
     height: 90px;
 }
 
-
+#difficulties {
+    align-self: center;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
 
 .linha {
     display: flex;

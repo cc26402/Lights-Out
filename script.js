@@ -3,7 +3,7 @@ let dif={"easy":3, "med":5, "hard":7}
 let size=null
 let current_difficulty=null
 let lamps_changed=[]
-
+let clicks=0
 
 function generate_grid(size) {
     lamps=[]
@@ -24,7 +24,7 @@ function generate_grid(size) {
         for (let j=1; j<=size; j++) {
             html+=
                 `
-                    <div id="${lamp}" class="light_off" onclick="change_states(Number(this.id), true)"></div>
+                    <div id="${lamp}" class="light_off" onclick="change_states(Number(this.id), true, true)"></div>
                 `
             lamps.push({"line":i, "on":false})
             lamp++
@@ -55,16 +55,21 @@ function change_state(lamp) {
     }
 }
 
-function change_states(lamp, need_verify_lamps) {
+function change_states(lamp, need_verify_lamps, count) {
+    if (count) {clicks++}
     change_state(lamp)
     if(lamp-size>=0) {change_state(lamp-size)}
     if(lamp+size<=(size*size)-1) {change_state(lamp+size)}
     if (lamp+1<=(size*size)-1 && lamps[lamp+1]["line"]==lamps[lamp]["line"]) {change_state(lamp+1)}
     if (lamp-1>=0 && lamps[lamp-1]["line"]==lamps[lamp]["line"]) {change_state(lamp-1)}
-    if (need_verify_lamps && all_lamps_are_off()) {document.getElementById("congratulations_back").style.display="block"}
+    if (need_verify_lamps && all_lamps_are_off()) {
+        document.getElementById("clicks_win").textContent=`Você ganhou com ${clicks} jogadas`
+        document.getElementById("congratulations_back").style.display="block"
+    }
 }
 
 function shuffle(choice, new_game) {
+    clicks=0
     if (new_game) {
         size=dif[choice]
         current_difficulty=choice
@@ -74,7 +79,7 @@ function shuffle(choice, new_game) {
             let lamp_to_change=Math.floor(Math.random() * (size*size))
             if (!lamps_changed.includes(lamp_to_change)) {
                 lamps_changed.push(lamp_to_change)
-                change_states(lamp_to_change, false)
+                change_states(lamp_to_change, false, false)
             }
             if (lamps_changed.length==size && all_lamps_are_off()) {lamps_changed=[]}
         }

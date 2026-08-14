@@ -10,12 +10,13 @@ function generate_grid(size) {
     let html=""
     let lamp=0
     let lamp_styles = {
-        "easy": {"size": "150px", "margin":"4px"},
-        "med": {"size": "100px", "margin":"4px"},
-        "hard": {"size": "80px", "margin":"3px"}
+        "easy": {"size": "150px", "margin":"4px", "box_shdw":"3px"},
+        "med": {"size": "100px", "margin":"4px", "box_shdw":"2.5px"},
+        "hard": {"size": "80px", "margin":"3px", "box_shdw":"1.5px"}
     }
     document.documentElement.style.setProperty("--lamp_size", lamp_styles[current_difficulty]["size"])
     document.documentElement.style.setProperty("--lamp_margin", lamp_styles[current_difficulty]["margin"])
+    document.documentElement.style.setProperty("--box_shadow_hover_size", lamp_styles[current_difficulty]["box_shdw"])
     for (let i=1; i<=size; i++) {
         html+=
             `
@@ -74,9 +75,10 @@ function shuffle(choice, new_game) {
     if (new_game) {
         size=dif[choice]
         current_difficulty=choice
+        let rdm_clicks={"easy":size*2, "med":size*3, "hard":size*4}
         generate_grid(size)
         lamps_changed=[]
-        while (lamps_changed.length<size*2) {
+        while (lamps_changed.length<rdm_clicks[choice]) {
             let lamp_to_change=Math.floor(Math.random() * (size*size))
             if (!lamps_changed.includes(lamp_to_change)) {
                 lamps_changed.push(lamp_to_change)

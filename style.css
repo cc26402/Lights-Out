@@ -13,6 +13,7 @@ body{
 :root {
     --lamp_size: 150px;
     --lamp_margin: 4px;
+    --box_shadow_hover_size: 3px;
 }
 
 header {
@@ -116,7 +117,7 @@ main {
     transition: 0.2s;
 
     &:hover {
-        box-shadow: 0 0 0 3px rgba(255,255,255,1);
+        box-shadow: 0 0 0 var(--box_shadow_hover_size) rgba(255,255,255,1);
     }
 }
 
@@ -129,7 +130,7 @@ main {
     transition: 0.2s;
 
     &:hover {
-        box-shadow: 0 0 0 3px rgba(0,255,0,1);
+        box-shadow: 0 0 0 var(--box_shadow_hover_size) rgba(0,255,0,1);
     }
 }
 

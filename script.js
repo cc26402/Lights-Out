@@ -4,10 +4,18 @@ let size=null
 let current_difficulty=null
 let lamps_changed=[]
 
+
 function generate_grid(size) {
     lamps=[]
     let html=""
     let lamp=0
+    let lamp_styles = {
+        "easy": {"size": "150px", "margin":"4px"},
+        "med": {"size": "100px", "margin":"4px"},
+        "hard": {"size": "80px", "margin":"3px"}
+    }
+    document.documentElement.style.setProperty("--lamp_size", lamp_styles[current_difficulty]["size"])
+    document.documentElement.style.setProperty("--lamp_margin", lamp_styles[current_difficulty]["margin"])
     for (let i=1; i<=size; i++) {
         html+=
             `

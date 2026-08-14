@@ -57,6 +57,7 @@ function change_state(lamp) {
 
 function change_states(lamp, need_verify_lamps, count) {
     if (count) {clicks++}
+    document.getElementById("counter").textContent=`Jogadas: ${clicks}`
     change_state(lamp)
     if(lamp-size>=0) {change_state(lamp-size)}
     if(lamp+size<=(size*size)-1) {change_state(lamp+size)}

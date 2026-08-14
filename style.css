@@ -15,6 +15,13 @@ body{
     --lamp_margin: 4px;
 }
 
+header {
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header>h1 {
     margin: 15px;
     width: 27%;
@@ -35,6 +42,12 @@ header>h1 {
     }
 }
 
+#counter {
+    font-size: larger;
+    font-weight: 400;
+    margin:30px;
+}
+
 button {
     appearance: none;
     font: inherit;
@@ -49,10 +62,6 @@ button {
         color: black;
         box-shadow: 0 0 10px 5px rgba(255,255,255,1);
     }
-}
-
-header {
-    height: 85px;
 }
 
 #difficulties {

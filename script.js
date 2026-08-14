@@ -4,15 +4,44 @@ let size=null
 let current_difficulty=null
 let lamps_changed=[]
 let clicks=0
+const colors={
+    "1": "rgba(255,0,0,1)",
+    "2": "rgba(0,255,0,1)",
+    "3": "rgba(0,0,255,1)",
+    "4": "rgba(255,255,0,1)",
+    "5": "rgba(255,0,255,1)",
+    "6": "rgba(0,255,255,1)"
+}
+let current_color=1
+
+function change_color() {
+    document.documentElement.style.setProperty("--lamp_color", colors[`${current_color}`])
+    current_color++
+    if (current_color>6) {
+        current_color=1
+    }
+}
 
 function generate_grid(size) {
     lamps=[]
     let html=""
     let lamp=0
-    let lamp_styles = {
-        "easy": {"size": "150px", "margin":"4px", "box_shdw":"3px"},
-        "med": {"size": "100px", "margin":"4px", "box_shdw":"2.5px"},
-        "hard": {"size": "80px", "margin":"3px", "box_shdw":"1.5px"}
+    const lamp_styles = {
+        "easy": {
+            "size": "150px",
+            "margin": "4px",
+            "box_shdw": "3px"
+        },
+        "med": {
+            "size":"100px",
+            "margin": "4px",
+            "box_shdw": "2.5px"
+        },
+        "hard": {
+            "size": "80px",
+            "margin": "3px",
+            "box_shdw": "1.5px"
+        }
     }
     document.documentElement.style.setProperty("--lamp_size", lamp_styles[current_difficulty]["size"])
     document.documentElement.style.setProperty("--lamp_margin", lamp_styles[current_difficulty]["margin"])

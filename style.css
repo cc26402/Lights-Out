@@ -6,7 +6,7 @@ body{
     display: flex;
     flex-direction: column;
     margin: 0;
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(24, 24, 24);
     color: white;
 }
 
@@ -62,7 +62,7 @@ button {
     &:hover {
         background-color: white;
         color: black;
-        box-shadow: 0 0 10px 5px rgba(255,255,255,1);
+        box-shadow: 0 0 7px 2px rgba(255,255,255,1);
     }
 }
 
@@ -111,7 +111,7 @@ main {
 
 /*easy: 150px; medium: 100px; hard: margin:3px, 80px*/
 .light_off {
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,0.4);
     margin: var(--lamp_margin);
     width: var(--lamp_size);
     height:var(--lamp_size);
@@ -119,7 +119,7 @@ main {
     transition: 0.2s;
 
     &:hover {
-        box-shadow: 0 0 0 var(--box_shadow_hover_size) rgba(255,255,255,1);
+        box-shadow: 0 0 4px var(--box_shadow_hover_size) white;
     }
 }
 
@@ -132,7 +132,7 @@ main {
     transition: 0.2s;
 
     &:hover {
-        box-shadow: 0 0 0 var(--box_shadow_hover_size) rgba(255,255,0,1);
+        box-shadow: 0 0 0 var(--box_shadow_hover_size) var(--lamp_color);
     }
 }
 

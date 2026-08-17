@@ -26,8 +26,8 @@ O objetivo do Lights Out é simples: **apague todas as luzes do tabuleiro**. O d
 1. Clone o repositório (ou baixe os arquivos manualmente):
 
 ```bash
-git clone https://github.com/cc26402/Projeto-Cotuca-de-Portas-Abertas.git
-cd Projeto-Cotuca-de-Portas-Abertas
+git clone https://github.com/cc26402/Lights-Out.git
+cd Lights-Out
 ```
 
 2. Abra o arquivo `lights_out.html` em qualquer navegador — não é necessário nenhum servidor ou instalação adicional
